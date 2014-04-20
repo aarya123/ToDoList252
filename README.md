@@ -2,6 +2,8 @@ ToDoList252
 ===========
 chmod 400 server/ToDoList252.pem
 ssh ec2-user@54.213.80.211 -i server/ToDoList252.pem
+Console mysql - root:admin
+Remote mysql - user:user
 
 USER {
 	id
