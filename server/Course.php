@@ -3,17 +3,14 @@ class Course{
 	function __construct($Course_id,$Name, $Color, $User) {
 		include 'db.php';
 		if(is_null($Course_id)){
-			$this->Name=$Name;
-			$this->Assignments=array();
 			if (is_null($Color)||empty($Color)) {
 				$stmt = $db->prepare("INSERT INTO Course (name, User_id) VALUES (?,?)");
 				$values=array($Name, $User->id);
-				$this->Color="FFFFFF";
+				$Color="FFFFFF";
 			}
 			else {
 				$stmt = $db->prepare("INSERT INTO Course (name, color, User_id) VALUES (?,?,?)");
 				$values=array($Name, $Color, $User->id);
-				$this->Color=$Color;
 			}
 			if($stmt->execute($values)) {
 				$this->id=$db->lastInsertId();
@@ -21,6 +18,9 @@ class Course{
 			else {
 				$this->id=-1;
 			}
+			$this->Name=$Name;
+			$this->Color=$Color;
+			$this->Assignments=array();
 		} else {
 			$this->id=$Course_id;
 			$stmt = $db->prepare("SELECT color, name FROM Course where id=?");

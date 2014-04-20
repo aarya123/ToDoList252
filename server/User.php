@@ -3,7 +3,6 @@ class User {
 	function __construct($User_id) {
 		include_once('db.php');
 		if(is_null($User_id)){
-			$this->Courses=array();
 			$stmt = $db->prepare("INSERT INTO User VALUES ()");
 			if($stmt->execute()) {
 				$this->id = $db->lastInsertId();
@@ -11,6 +10,7 @@ class User {
 			else {
 				$this->id= -1;
 			}
+			$this->Courses=array();
 		}else {
 			include_once('Course.php');
 			$this->id=$User_id;

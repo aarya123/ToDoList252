@@ -25,3 +25,6 @@ proguard/
 # IntelliJ Files
 .idea/
 *.iml
+
+# DB Backup
+*.mwb.bak
