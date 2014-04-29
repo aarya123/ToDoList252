@@ -32,8 +32,8 @@ public class CategoryChooserActivity extends Activity {
             courseName = getIntent().getStringExtra("courseName");
         }
         if(getIntent().hasExtra("dueDate")){
-            String dateParts[] = getIntent().getStringExtra("dueDate").split("/"); //date in form month/day/year
-            int month = Integer.parseInt(dateParts[0]);
+            String dateParts[] = getIntent().getStringExtra("dueDate").split("-| "); //date in form year-month-day 00:00:00
+            int month = Integer.parseInt(dateParts[1]);
             StringBuilder dateString = new StringBuilder();
             switch(month){
                 case 0: dateString.append("January"); break;

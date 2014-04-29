@@ -49,7 +49,7 @@ public class DueDateChooserActivity extends Activity {
                 }
                 Intent intent = new Intent(getApplicationContext(), CategoryChooserActivity.class);
                 intent.putExtra("courseName", courseName);
-                intent.putExtra("dueDate", ""+month+"/"+dayOfMonth+"/"+year);
+                intent.putExtra("dueDate", ""+year+"-"+month+"-"+dayOfMonth+" 00:00:00");
                 startActivity(intent);
             }
         }
