@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="fill_parent"
+        android:padding="5dp"
+        android:text="Choose a class..."
+        android:textSize="24dp"
+        />
+
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:columnWidth="90dp"
+        android:numColumns="2"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="20dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+    />
+</LinearLayout>

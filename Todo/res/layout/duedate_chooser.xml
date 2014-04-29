@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/selectedCourse"
+        android:layout_height="50dp"
+        android:layout_width="fill_parent"
+        android:paddingTop="5dp"
+        android:textSize="24dp"
+        />
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="fill_parent"
+        android:paddingTop="5dp"
+        android:text="When's it due..."
+        android:textSize="24dp"
+        />
+
+    <CalendarView
+        android:id="@+id/calendarview"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:shownWeekCount="4"
+        android:showWeekNumber="false"
+
+        />
+</LinearLayout>
