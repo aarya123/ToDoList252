@@ -12,5 +12,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".CourseChooserActivity"/>
+        <activity android:name=".DueDateChooserActivity"/>
+        <activity android:name=".CategoryChooserActivity"/>
     </application>
 </manifest>
