@@ -1,50 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
         >
     <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight=".33"
-            android:text="TODO"
-            android:textSize="34dp"
-            android:gravity="center"
-            />
-    <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Username"
-            android:layout_weight=".165"
-            android:layout_marginLeft="@dimen/splash_horizontal_margin"
-            android:layout_marginRight="@dimen/splash_horizontal_margin"
-            />
-    <EditText 
-            android:layout_width="fill_parent" 
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:layout_weight=".165"
-            android:layout_marginLeft="@dimen/splash_horizontal_margin"
-            android:layout_marginRight="@dimen/splash_horizontal_margin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="TODO List"
+        android:layout_weight=".33"
+        android:textSize="34dp"
+        android:gravity="center"
         />
-    
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userID"
+        android:hint="User ID"
+        android:layout_weight=".165"
+        android:layout_marginLeft="@dimen/splash_horizontal_margin"
+        android:layout_marginRight="@dimen/splash_horizontal_margin"
+        />
     <Button
-            android:id="@+id/loginButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Log In"
-            android:layout_weight=".165"
-            android:layout_marginLeft="@dimen/splash_horizontal_margin"
-            android:layout_marginRight="@dimen/splash_horizontal_margin"
+        android:id="@+id/loginButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:onClick="login"
+        android:layout_weight=".165"
+        android:layout_marginLeft="@dimen/splash_horizontal_margin"
+        android:layout_marginRight="@dimen/splash_horizontal_margin"
         />
     <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:textSize="18dp"
-            android:gravity="center"
-            android:layout_weight=".165"
-            />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:onClick="signUp"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:layout_weight=".165"
+        />
 </LinearLayout>
 
