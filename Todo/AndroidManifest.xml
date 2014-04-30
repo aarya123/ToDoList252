@@ -15,5 +15,6 @@
         <activity android:name=".CourseChooserActivity"/>
         <activity android:name=".DueDateChooserActivity"/>
         <activity android:name=".CategoryChooserActivity"/>
+        <activity android:name=".ListOfTasks"/>
     </application>
 </manifest>

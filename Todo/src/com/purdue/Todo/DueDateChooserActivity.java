@@ -3,6 +3,9 @@ package com.purdue.Todo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
@@ -33,7 +36,8 @@ public class DueDateChooserActivity extends Activity {
         startDate = calendarView.getDate();
         calendarView.setOnDateChangeListener(dateChangeListener);
     }
-
+    
+    
     CalendarView.OnDateChangeListener dateChangeListener = new CalendarView.OnDateChangeListener() {
         @Override
         public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
@@ -54,4 +58,28 @@ public class DueDateChooserActivity extends Activity {
             }
         }
     };
+    
+    
+    @Override
+    // Inflate action bar menu items
+    public boolean onCreateOptionsMenu(Menu menu) { 
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.view_tasks_optionsmenu, menu); //displays the "list" button
+        return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    // Handle presses on the action bar items
+    public boolean onOptionsItemSelected(MenuItem item) {
+        
+        switch (item.getItemId()) {
+            case R.id.action_task_list:
+                Intent intent = new Intent(getApplicationContext(), ListOfTasks.class);
+                startActivity(intent);
+                return true;
+         
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
