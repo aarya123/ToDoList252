@@ -23,25 +23,27 @@
         android:gravity="center"
     />
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/enterCourse"
-        android:hint="Enter course"
-        android:layout_weight=".165"
-        android:layout_marginLeft="@dimen/splash_horizontal_margin"
-        android:layout_marginRight="@dimen/splash_horizontal_margin"
-        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newCourse"
+            android:hint="Enter course"
+            />
 
-    <Button
-        android:id="@+id/addCourse"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Add course"
-        android:onClick="addCourse"
-        android:layout_marginLeft="@dimen/splash_horizontal_margin"
-        android:layout_marginRight="@dimen/splash_horizontal_margin"
-        />
+        <Button
+            android:id="@+id/addCourse"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add course"
+            android:onClick="addCourse"
+            />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/signUpButton"
