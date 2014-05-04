@@ -12,15 +12,31 @@
         android:textSize="34dp"
         android:gravity="center"
         />
-    <EditText
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/userID"
-        android:hint="User ID"
         android:layout_weight=".165"
         android:layout_marginLeft="@dimen/splash_horizontal_margin"
         android:layout_marginRight="@dimen/splash_horizontal_margin"
-        />
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User ID"
+            android:layout_weight="0"
+            />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/userID"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/loginButton"
         android:layout_width="fill_parent"

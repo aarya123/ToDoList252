@@ -2,6 +2,8 @@ package com.purdue.Todo;
 
 import android.app.Activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,11 +31,18 @@ public class SplashActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+
+        SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+        int savedUserID = settings.getInt("currentUser", -1);
+        String savedUserIDString = savedUserID > -1 ? String.valueOf(savedUserID) : "";
+        ((EditText) findViewById(R.id.userID)).setText(savedUserIDString);
+
+        context = this;
     }
 
     public static String serverURL = "http://54.213.80.211/ToDoList252/server/";
 
-    final SplashActivity context = this; //This is needed for GetUserTask
+    static SplashActivity context; //This is needed for GetUserTask
 
     private class GetUserTask extends AsyncTask<Integer, Void, String> {
         protected String doInBackground(Integer... params) {
