@@ -3,4 +3,5 @@
     <string name="app_name">ToDo List</string>
     <string name="action_task_list">Task List</string>
     <string name="action_add_task">Add task</string>
+    <string name="ASSIGNMENT">com.purdue.Todo.Assignment</string>
 </resources>

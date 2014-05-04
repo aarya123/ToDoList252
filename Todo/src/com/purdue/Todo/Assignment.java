@@ -42,5 +42,10 @@ public class Assignment {
     void setCategory(String category){
         mCategory = category;
     }
+    
+    public String toString(){
+    	String assignment_details = mCourse + "%" + mDueDate + "%" + mCategory;
+    	return assignment_details;
+    }
 
 }

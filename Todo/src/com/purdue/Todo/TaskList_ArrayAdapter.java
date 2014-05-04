@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
+
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,9 +92,9 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        holder.dueDate.setText(a.getDueDate());
 	        holder.category.setText(a.getCategory());
 	        
-	        //get the required number of days between the due date and the current date
+	        //get the required number of days/hours/minutes between the due date and the current date
 	        
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	        Date dueDate=new Date();
 	        try {
 				dueDate = sdf.parse(a.getDueDate());
@@ -101,9 +103,35 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 			}
 	        Date currentDate = new Date();
 	        int days = (int) ((dueDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24));
-	        String daysBetweenDates = Integer.toString(days);
+	        int hours = (int) ((dueDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60));
+	        int minutes = (int) ((dueDate.getTime() - currentDate.getTime()) / (1000 * 60));
 	        
-	        holder.dueIn.setText("Due in: " + daysBetweenDates + " days");
+	        String daysBetweenDates = Integer.toString(days);
+	        String hoursBetweenDates = Integer.toString(hours);
+	        String minutesBetweenDates = Integer.toString(minutes);
+	        
+	        
+	        //set apropriate warning colors
+	        if(days <= 1)
+	        	holder.dueIn.setTextColor(Color.parseColor("#E80000")); //Red
+	        else if(days <= 3)
+	        	holder.dueIn.setTextColor(Color.parseColor("#FF9900")); //Orange
+	        else
+	        	holder.dueIn.setTextColor(Color.parseColor("#33CC00")); //Green
+	        
+	        //set the required due date text
+	        if(minutes == 1)
+	        	holder.dueIn.setText("Due in: " + minutesBetweenDates + " min");
+	        else if(minutes < 60)
+	        	holder.dueIn.setText("Due in: " + minutesBetweenDates + " mins");
+	        else if(hours == 1)
+	        	holder.dueIn.setText("Due in: " + hoursBetweenDates + " hour");
+	        else if(hours < 24)
+	        	holder.dueIn.setText("Due in: " + hoursBetweenDates + " hours");
+	        else if(days == 1)
+	        	holder.dueIn.setText("Due in: " + daysBetweenDates + " day");
+	        else
+	        	holder.dueIn.setText("Due in: " + daysBetweenDates + " days");
 	        
 	        
 	        return convertView;
