@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="fill_parent"
+        android:padding="5dp"
+        android:text="Enter your courses..."
+        android:textSize="24dp"
+        android:layout_weight="0"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        >
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/newCourse"
+            android:hint="Enter course"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/addCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add course"
+            android:onClick="addCourse"
+            android:layout_weight="0"
+            />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="20dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        android:layout_weight="1"
+        android:paddingBottom="2dp"
+        />
+
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:onClick="signUp"
+        android:layout_marginLeft="@dimen/splash_horizontal_margin"
+        android:layout_marginRight="@dimen/splash_horizontal_margin"
+        android:layout_weight="0"
+        />
+
+</LinearLayout>

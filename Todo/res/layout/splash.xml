@@ -31,7 +31,7 @@
         android:layout_marginLeft="@dimen/splash_horizontal_margin"
         android:layout_marginRight="@dimen/splash_horizontal_margin"
         />
-    <TextView
+    <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up"
@@ -39,6 +39,8 @@
         android:textSize="18dp"
         android:gravity="center"
         android:layout_weight=".165"
+        android:layout_marginLeft="@dimen/splash_horizontal_margin"
+        android:layout_marginRight="@dimen/splash_horizontal_margin"
         />
 </LinearLayout>
 
