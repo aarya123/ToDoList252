@@ -3,6 +3,9 @@ package com.purdue.Todo;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by Nathan on 4/29/2014.
  */
@@ -45,5 +48,12 @@ public class User {
     public User(int id, Course[] courses) {
         this.id = id;
         this.Courses = courses;
+    }
+
+    public ArrayList<Assignment> getAllAssignments() {
+        ArrayList<Assignment> assignments = new ArrayList<Assignment>();
+        for (Course course : Courses)
+            assignments.addAll(Arrays.asList(course.getAssignments()));
+        return assignments;
     }
 }

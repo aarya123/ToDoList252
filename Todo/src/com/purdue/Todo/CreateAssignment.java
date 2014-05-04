@@ -38,10 +38,10 @@ public class CreateAssignment extends AsyncTask<Assignment, Void, Integer> {
             int courseid = 0;
             Course[] courses = User.currentUser.getCourses();
             for(int i = 0; i<courses.length; i++){
-                if(courses[i] == assignment.getCourse()){
+                /*if(courses[i] == assignment.getCourse()){
                     courseid = courses[i].getId();
                     break;
-                }
+                }*/
             }
             urlParameters.add(new BasicNameValuePair("Course_id", ""+courseid));
             urlParameters.add(new BasicNameValuePair("due_date", assignment.getDueDate()));

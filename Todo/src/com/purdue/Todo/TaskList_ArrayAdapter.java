@@ -43,7 +43,7 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        }
 	        
 	        Assignment a = getItem(position);
-	        holder.course.setText(a.getCourse().getName());
+	        //holder.course.setText(a.getCourse().getName());
 	        holder.dueDate.setText(a.getDueDate());
 	        holder.category.setText(a.getCategory());
 	        

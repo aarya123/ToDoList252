@@ -3,6 +3,7 @@ package com.purdue.Todo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,8 +17,6 @@ import android.widget.Toast;
  * Created by Sean on 4/22/14.
  */
 public class CourseChooserActivity extends Activity {
-
-    String myClasses[] = {"CHM 115", "MA 416", "CS 307", "CS 252"};
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,8 @@ public class CourseChooserActivity extends Activity {
                 startActivity(intent);
             }
         });
-
+        for (int i = 0; i < User.getCurrentUser().getAllAssignments().size(); i++)
+            Log.d(("Assignment #" + i), User.getCurrentUser().getAllAssignments().get(i).getDueDate());
     }
 
     @Override

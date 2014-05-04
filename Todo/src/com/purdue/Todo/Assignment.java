@@ -4,48 +4,44 @@ package com.purdue.Todo;
  * Created by Sean on 4/29/14.
  */
 public class Assignment {
-    private Course mCourse;
-    private String mDueDate;
-    private String mCategory;
+    private String DueDate;
+    private String Category;
+    private int id;
 
-    Assignment(){
-        mCourse = new Course();
-        mDueDate = null;
-        mCategory = null;
-    }
-    Assignment(Course course, String date, String category){
-        mCourse = course;
-        mDueDate = date; //date in form year-month-day 00:00:00
-        mCategory = category;
+    public Assignment(String dueDate, String category, int id) {
+        DueDate = dueDate;
+        Category = category;
+        this.id = id;
     }
 
-    Course getCourse(){
-        return mCourse;
+    public String getDueDate() {
+
+        return DueDate;
     }
 
-    String getDueDate(){
-        return mDueDate;
+    public void setDueDate(String dueDate) {
+        DueDate = dueDate;
     }
 
-    String getCategory(){
-        return mCategory;
+    public String getCategory() {
+        return Category;
     }
 
-    void setCourse(Course course){
-        mCourse = course;
+    public void setCategory(String category) {
+        Category = category;
     }
 
-    void setDueDate(String dueDate){
-        mDueDate = dueDate;
+    public int getId() {
+        return id;
     }
 
-    void setCategory(String category){
-        mCategory = category;
+    public void setId(int id) {
+        this.id = id;
     }
-    
-    public String toString(){
-    	String assignment_details = mCourse + "%" + mDueDate + "%" + mCategory;
-    	return assignment_details;
+
+    public String toString() {
+        String assignment_details = DueDate + "%" + Category;
+        return assignment_details;
     }
 
 }
