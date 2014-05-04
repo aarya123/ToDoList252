@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <!-- action bar menu that displays the "View tasks" button -->
+    
+    <item android:id="@+id/action_task_list"
+          android:icon="@drawable/task_list"
+          android:title="@string/action_task_list"
+          android:showAsAction="always" />
+
+</menu>

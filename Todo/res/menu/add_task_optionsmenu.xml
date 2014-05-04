@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <!-- action bar menu that displays the "create task" button -->
+    	 
+   	<item android:id="@+id/action_add_task"
+	      android:icon="@drawable/add_task"
+	      android:showAsAction="always"
+	      android:title="@string/action_add_task"/>
+
+</menu>
