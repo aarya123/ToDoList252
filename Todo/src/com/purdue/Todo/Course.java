@@ -5,15 +5,22 @@ package com.purdue.Todo;
  */
 public class Course {
     private int id;
-    private String name;
-    private int color;
-    private Assignment[] assignments;
+    private String Name;
+    private String Color;
+    private Assignment[] Assignments;
 
-    public Course(int id, String name, int color, Assignment[] assignments) {
+    public Course() {
+        this.id = 0;
+        this.Name = null;
+        this.Color = "";
+        this.Assignments = null;
+    }
+
+    public Course(int id, String name, String Color, Assignment[] assignments) {
         this.id = id;
-        this.name = name;
-        this.color = color;
-        this.assignments = assignments;
+        this.Name = name;
+        this.Color = Color;
+        this.Assignments = assignments;
     }
 
     public int getId() {
@@ -25,26 +32,31 @@ public class Course {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
-    public int getColor() {
-        return color;
+    public String getColor() {
+        return Color;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public void setColor(String Color) {
+        this.Color = Color;
     }
 
     public Assignment[] getAssignments() {
-        return assignments;
+        return Assignments;
     }
 
     public void setAssignments(Assignment[] assignments) {
-        this.assignments = assignments;
+        this.Assignments = assignments;
+    }
+
+    @Override
+    public String toString() {
+        return this.Name;
     }
 }

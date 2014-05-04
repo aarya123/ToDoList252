@@ -2,6 +2,15 @@ package com.purdue.Todo;
 
 import android.app.Activity;
 
+/*TODO:
+Allow user ID to only contain numbers
+When you type enter on the login screen, it should log in instead of typing a newline
+Once you're logged in or registered you shouldn't be able to go back
+I get connection refused every time I try to log in or register
+ */
+
+import android.app.Activity;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;

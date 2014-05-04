@@ -5,73 +5,28 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	  private final Context context;
-	  //private final String[] values;
-	  //Assignment assignment;
 	  ViewHolder holder;
 
 	  public TaskList_ArrayAdapter(Context context, ArrayList<Assignment> list) {
 	    super(context, R.layout.task_element_in_list, list);
 	    this.context = context;
-	    //this.values = values;
 	  }
 
-	 /* @Override
-	  public View getView(int position, View convertView, ViewGroup parent) {
-		  LayoutInflater inflater = (LayoutInflater) context
-			        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		  
-		View rowView = inflater.inflate(R.layout.task_element_in_list, parent, false);
-	    //TextView textView = (TextView) rowView.findViewById(R.id.label);
-	    //ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-	    //textView.setText(values[position]);
-	    // Change the icon for Windows and iPhone
-	    /*String s = values[position];
-	    if (s.startsWith("Windows7") || s.startsWith("iPhone")
-	        || s.startsWith("Solaris")) {
-	      imageView.setImageResource(R.drawable.no);
-	    } else {
-	      imageView.setImageResource(R.drawable.ok);
-	    }
-	    
-	    if (convertView == null) {
-	    	LayoutInflater inflater = (LayoutInflater) getContext()
-	    			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	    	convertView = inflater.inflate(R.layout.task_element_in_list, parent, false);
-	    	assignment = new Assignment();
-	    	assignment.mCourse = (ImageView) convertView.findViewById(R.id.event_image);
-	    	assignment.eventName = (TextView) convertView.findViewById(R.id.event_name);
-	    	assignment.eventTime = (TextView) convertView.findViewById(R.id.event_time);
-	    	assignment.eventDescription = (TextView) convertView.findViewById(R.id.event_location);
-	    	convertView.setTag(holder);
-	    } else {
-	    	holder = (ViewHolder) convertView.getTag();
-	    }
-	    Event e = getItem(position);
-	    assignment.eventName.setText(e.getEventName());
-	    assignment.eventTime.setText(e.getDatetime());
-	    assignment.eventDescription.setText(e.getEventDescription());
-	    assignment.eventImage.setImageResource(R.drawable.purdue_symbol);
-	    return convertView;
-
-	    return rowView;
-	  }*/
-	  
-	  
 	    public View getView(int position, View convertView, ViewGroup parent) {
 	        if (convertView == null) {
 	            LayoutInflater inflater = (LayoutInflater) getContext()
@@ -88,7 +43,7 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        }
 	        
 	        Assignment a = getItem(position);
-	        holder.course.setText(a.getCourse());
+	        holder.course.setText(a.getCourse().getName());
 	        holder.dueDate.setText(a.getDueDate());
 	        holder.category.setText(a.getCategory());
 	        

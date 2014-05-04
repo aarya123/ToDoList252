@@ -3,6 +3,7 @@ package com.purdue.Todo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import android.widget.Toast;
  */
 public class CategoryChooserActivity extends Activity {
     String myCategories[] = {"Lab", "Prelab", "Homework", "Test"};
+    int coursePos;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category_chooser);
@@ -26,13 +28,14 @@ public class CategoryChooserActivity extends Activity {
         ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.grid_element, myCategories);
         gridView.setAdapter(mAdapter);
 
-        String courseName = "";
+        //String courseName = "";
         String displayDate = "";
         TextView selectedCourse = (TextView) findViewById(R.id.selectedCourse);
         TextView selectedDueDate = (TextView) findViewById(R.id.selectedDueDate);
 
-        if(getIntent().hasExtra("courseName")){
-            courseName = getIntent().getStringExtra("courseName");
+        if(getIntent().hasExtra("coursePos")){
+            coursePos = getIntent().getIntExtra("coursePos", -1);
+            if(coursePos < 0){ Log.d("Sean", "Invalid Course Pos"); }
         }
         if(getIntent().hasExtra("dueDate")){
             String dateParts[] = getIntent().getStringExtra("dueDate").split("-| "); //date in form year-month-day 00:00:00
@@ -58,7 +61,12 @@ public class CategoryChooserActivity extends Activity {
             displayDate = dateString.toString();
         }
 
-        selectedCourse.setText("Course: " + courseName);
+        if(coursePos >= 0){
+            selectedCourse.setText("Course: " + User.currentUser.getCourses()[coursePos]);
+        }
+        else{
+            selectedCourse.setText("Course: ");
+        }
         selectedDueDate.setText("Due: "+displayDate);
 
 
@@ -66,6 +74,10 @@ public class CategoryChooserActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
                 //TODO:add task to database
+                Assignment assignmentToCreate = new Assignment(User.currentUser.getCourses()[coursePos],
+                                                                getIntent().getStringExtra("dueDate"),
+                                                                myCategories[pos]);
+                new CreateAssignment(getApplicationContext()).execute(assignmentToCreate);
                 //show confirmation toast -- find out how to do link to undo
                 Toast.makeText(getApplicationContext(), "Assignment added", Toast.LENGTH_SHORT).show();
                 //return to class chooser screen
