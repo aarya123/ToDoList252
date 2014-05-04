@@ -4,6 +4,8 @@ package com.purdue.Todo;
  * Created by Nathan on 4/29/2014.
  */
 public class User {
+    public static User currentUser = null;
+
     private int id;
     private Course[] courses;
 

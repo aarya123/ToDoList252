@@ -25,28 +25,15 @@ public class SplashActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
-    Button loginButton;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
-
-        loginButton = (Button) findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //open course chooser activity
-                Intent intent = new Intent(getApplicationContext(), CourseChooserActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private String serverURL = "http://54.213.80.211/ToDoList252/server/";
 
     final SplashActivity context = this; //This is needed for GetUserTask
-
     private class CourseAndColor {
         public String course;
         public int color; //a 6-hex-digit color (e.g. 0xff0000)
@@ -129,13 +116,21 @@ public class SplashActivity extends Activity {
         }
 
         protected void onPostExecute(String result) {
-            //TODO: handle the result
             //The result will be enclosed in <> if it's an error, otherwise it's a JSON string
             Log.i("TODO list", "Got user: " + result);
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            if (result.get(0) == '<') { //Error
+                Toast.makeText(context, result.substring(1,result.length()-2), Toast.LENGTH_LONG).show();
+            }
+            else {
+                User.curentUser = gson.fromJson(result, User.class);
+
+                Intent intent = new Intent(getApplicationContext(), CourseChooserActivity.class);
+                startActivity(intent);
+            }
         }
     }
 
+    //This is called when the user presses the login button
     public void login(View view) {
         int userID = Integer.parseInt(((EditText) findViewById(R.id.userID)).getText().toString());
         new GetUserTask().execute(userID);
