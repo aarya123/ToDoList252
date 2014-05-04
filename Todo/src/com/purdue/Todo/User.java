@@ -1,5 +1,6 @@
 package com.purdue.Todo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -13,7 +14,7 @@ public class User {
 
     public static void setCurrentUser(User currentUser) {
         User.currentUser = currentUser;
-        SharedPreferences settings = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences settings = SplashActivity.context.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("currentUser", currentUser.id);
     }
