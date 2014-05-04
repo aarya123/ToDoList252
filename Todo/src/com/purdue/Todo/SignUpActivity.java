@@ -39,9 +39,13 @@ public class SignUpActivity extends Activity {
 
     public void addCourse(View view) {
         courses.add(((EditText) findViewById(R.id.newCourse)).getText().toString());
+        ((EditText) findViewById(R.id.newCourse)).setText("");
 
         ListView listView = (ListView) findViewById(R.id.listview);
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.grid_element, courses);
+        String coursesRev[] = new String[courses.size()];
+        for (int i = 0; i < courses.size(); i++)
+            coursesRev[courses.size()-i-1] = courses.get(i);
+        ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.signup_element, coursesRev);
         listView.setAdapter(mAdapter);
     }
 
@@ -103,7 +107,7 @@ public class SignUpActivity extends Activity {
             Log.i("TODO list", "Created user: " + result);
 
             if (result.charAt(0) == '<') { //Error
-                Toast.makeText(context, result.substring(1,result.length()-2), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, result.substring(1,result.length()-1), Toast.LENGTH_LONG).show();
             }
             else {
                 Gson gson = new Gson();
