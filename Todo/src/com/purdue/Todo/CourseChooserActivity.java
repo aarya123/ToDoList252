@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.TextView;
 
 /**
  * Created by Sean on 4/22/14.
@@ -23,17 +22,14 @@ public class CourseChooserActivity extends Activity {
         setContentView(R.layout.course_chooser);
 
         GridView gridView = (GridView) findViewById(R.id.gridview);
-        ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.grid_element, myClasses);
+        ArrayAdapter<Course> mAdapter = new ArrayAdapter<Course>(this, R.layout.grid_element, User.currentUser.getCourses());
         gridView.setAdapter(mAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                TextView courseView = (TextView) view;
-                String courseName = courseView.getText().toString();
-
                 Intent intent = new Intent(getApplicationContext(), DueDateChooserActivity.class);
-                intent.putExtra("courseName", courseName);
+                intent.putExtra("coursePos", pos);
                 startActivity(intent);
             }
         });

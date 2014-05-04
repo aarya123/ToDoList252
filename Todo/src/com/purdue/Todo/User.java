@@ -19,7 +19,7 @@ public class User {
         editor.putInt("currentUser", currentUser.id);
     }
 
-    private static User currentUser = null;
+    public static User currentUser = null;
 
     private int id;
     private Course[] courses;

@@ -3,6 +3,7 @@ package com.purdue.Todo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,17 +21,26 @@ public class DueDateChooserActivity extends Activity {
     // was actually changed.
     Long startDate;
     //*******************
+    int coursePos;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.duedate_chooser);
 
         TextView courseSelected = (TextView) findViewById(R.id.selectedCourse);
-        String courseName = "";
 
-        if(getIntent().hasExtra("courseName")){
-            courseName = getIntent().getStringExtra("courseName");
+        if(getIntent().hasExtra("coursePos")){
+            coursePos = getIntent().getIntExtra("coursePos", -1);
+            if(coursePos < 0){ Log.d("Sean", "Invalid Course Pos"); }
         }
-        courseSelected.setText("Course: " + courseName);
+        else{
+            coursePos = -1;
+        }
+        if(coursePos >= 0){
+            courseSelected.setText("Course: " + User.currentUser.getCourses()[coursePos]);
+        }
+        else{
+            courseSelected.setText("Course: ");
+        }
 
         CalendarView calendarView = (CalendarView) findViewById(R.id.calendarview);
         startDate = calendarView.getDate();
@@ -42,17 +52,13 @@ public class DueDateChooserActivity extends Activity {
         @Override
         public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
             if(calendarView.getDate() != startDate){ //check that a new date was selected
-                String courseName = "";
                 String date = "";
 
                 //update startDate
                 startDate = calendarView.getDate();
 
-                if(getIntent().hasExtra("courseName")){
-                    courseName = getIntent().getStringExtra("courseName");
-                }
                 Intent intent = new Intent(getApplicationContext(), CategoryChooserActivity.class);
-                intent.putExtra("courseName", courseName);
+                intent.putExtra("coursePos", coursePos);
                 intent.putExtra("dueDate", ""+year+"-"+month+"-"+dayOfMonth+" 00:00:00");
                 startActivity(intent);
             }

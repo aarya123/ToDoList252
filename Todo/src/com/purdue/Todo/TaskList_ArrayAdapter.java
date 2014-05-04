@@ -1,20 +1,16 @@
 package com.purdue.Todo;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	  private final Context context;
@@ -86,7 +82,7 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        }
 	        
 	        Assignment a = getItem(position);
-	        holder.course.setText(a.getCourse());
+	        holder.course.setText(a.getCourse().getName());
 	        holder.dueDate.setText(a.getDueDate());
 	        holder.category.setText(a.getCategory());
 	        

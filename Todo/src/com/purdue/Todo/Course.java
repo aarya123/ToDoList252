@@ -9,6 +9,13 @@ public class Course {
     private int color;
     private Assignment[] assignments;
 
+    public Course(){
+        this.id = 0;
+        this.name = null;
+        this.color = 0;
+        this.assignments = null;
+    }
+
     public Course(int id, String name, int color, Assignment[] assignments) {
         this.id = id;
         this.name = name;
@@ -46,5 +53,10 @@ public class Course {
 
     public void setAssignments(Assignment[] assignments) {
         this.assignments = assignments;
+    }
+
+    @Override
+    public String toString(){
+        return this.name;
     }
 }

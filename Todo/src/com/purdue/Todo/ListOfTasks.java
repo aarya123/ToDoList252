@@ -1,26 +1,17 @@
 package com.purdue.Todo;
 
 
-import java.util.ArrayList;
-
-
-import android.app.Activity;
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class ListOfTasks extends ListActivity{
 	
@@ -28,11 +19,11 @@ public class ListOfTasks extends ListActivity{
 	    super.onCreate(savedInstanceState);
 	    ArrayList<Assignment> assignment_list = new ArrayList<Assignment>();
 	    //String[] values = {"a","b","c","d","e","f","g","h"};
-	    Assignment ass1 = new Assignment("Chem 115", "2014-05-21 00:12:31","Lab");
-	    Assignment ass2 = new Assignment("Phys 172", "2014-05-18 12:31:22","Homework");
-	    Assignment ass3 = new Assignment("CS 240", "2014-06-10 05:43:11","Prelab");
-	    Assignment ass4 = new Assignment("MA 352", "2014-06-02 08:42:11","Test");
-	    Assignment ass5 = new Assignment("STAT 350", "2014-07-14 21:12:08","Lab");
+	    Assignment ass1 = new Assignment(User.getCurrentUser().getCourses()[0], "2014-05-21 00:12:31","Lab");
+	    Assignment ass2 = new Assignment(User.getCurrentUser().getCourses()[0], "2014-05-18 12:31:22","Homework");
+	    Assignment ass3 = new Assignment(User.getCurrentUser().getCourses()[0], "2014-06-10 05:43:11","Prelab");
+	    Assignment ass4 = new Assignment(User.getCurrentUser().getCourses()[0], "2014-06-02 08:42:11","Test");
+	    Assignment ass5 = new Assignment(User.getCurrentUser().getCourses()[0], "2014-07-14 21:12:08","Lab");
 	    
 	    assignment_list.add(ass1);
 	    assignment_list.add(ass2);

@@ -4,22 +4,22 @@ package com.purdue.Todo;
  * Created by Sean on 4/29/14.
  */
 public class Assignment {
-    private String mCourse;
+    private Course mCourse;
     private String mDueDate;
     private String mCategory;
 
     Assignment(){
-        mCourse = null;
+        mCourse = new Course();
         mDueDate = null;
         mCategory = null;
     }
-    Assignment(String course, String date, String category){
+    Assignment(Course course, String date, String category){
         mCourse = course;
-        mDueDate = date;
+        mDueDate = date; //date in form year-month-day 00:00:00
         mCategory = category;
     }
 
-    String getCourse(){
+    Course getCourse(){
         return mCourse;
     }
 
@@ -31,7 +31,7 @@ public class Assignment {
         return mCategory;
     }
 
-    void setCourse(String course){
+    void setCourse(Course course){
         mCourse = course;
     }
 
