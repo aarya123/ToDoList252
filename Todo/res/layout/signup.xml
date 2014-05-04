@@ -11,7 +11,33 @@
         android:padding="5dp"
         android:text="Enter your courses..."
         android:textSize="24dp"
+        android:layout_weight="0"
         />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        >
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/newCourse"
+            android:hint="Enter course"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/addCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add course"
+            android:onClick="addCourse"
+            android:layout_weight="0"
+            />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/listview"
@@ -19,30 +45,11 @@
         android:layout_width="fill_parent"
         android:verticalSpacing="20dp"
         android:horizontalSpacing="20dp"
-        android:stretchMode="columnWidth"
         android:gravity="center"
-    />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/newCourse"
-            android:hint="Enter course"
-            />
-
-        <Button
-            android:id="@+id/addCourse"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Add course"
-            android:onClick="addCourse"
-            />
-
-    </LinearLayout>
+        android:stretchMode="columnWidth"
+        android:layout_weight="1"
+        android:paddingBottom="2dp"
+        />
 
 
     <Button
@@ -53,6 +60,7 @@
         android:onClick="signUp"
         android:layout_marginLeft="@dimen/splash_horizontal_margin"
         android:layout_marginRight="@dimen/splash_horizontal_margin"
+        android:layout_weight="0"
         />
 
 </LinearLayout>

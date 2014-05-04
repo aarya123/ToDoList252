@@ -107,7 +107,7 @@ public class SignUpActivity extends Activity {
             }
             else {
                 Gson gson = new Gson();
-                User.currentUser = gson.fromJson(result, User.class);
+                User.setCurrentUser(gson.fromJson(result, User.class));
 
                 Intent intent = new Intent(getApplicationContext(), CourseChooserActivity.class);
                 startActivity(intent);
