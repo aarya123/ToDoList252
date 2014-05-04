@@ -1,6 +1,5 @@
 package com.purdue.Todo;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -17,12 +16,13 @@ public class User {
         SharedPreferences settings = SplashActivity.context.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("currentUser", currentUser.id);
+        editor.commit();
     }
 
     public static User currentUser = null;
 
     private int id;
-    private Course[] courses;
+    private Course[] Courses;
 
     public int getId() {
         return id;
@@ -33,15 +33,17 @@ public class User {
     }
 
     public Course[] getCourses() {
-        return courses;
+        if (Courses == null)
+            Courses = new Course[0];
+        return Courses;
     }
 
     public void setCourses(Course[] courses) {
-        this.courses = courses;
+        this.Courses = courses;
     }
 
     public User(int id, Course[] courses) {
         this.id = id;
-        this.courses = courses;
+        this.Courses = courses;
     }
 }
