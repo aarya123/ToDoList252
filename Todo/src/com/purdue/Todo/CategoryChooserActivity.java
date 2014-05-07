@@ -97,7 +97,13 @@ public class CategoryChooserActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
                 //TODO:add task to database
-                Assignment assignmentToCreate = new Assignment(getIntent().getStringExtra("dueDate"), myCategories[pos], -1);
+                Log.d("Sean", "dueDate: "+ getIntent().getStringExtra("dueDate") +
+                       "\nCategory: "+myCategories[pos]+
+                       "\nCourse: "+User.currentUser.getCourses()[coursePos] +
+                       "\nCourse_id: "+User.currentUser.getCourses()[coursePos].getId());
+
+                Assignment assignmentToCreate = new Assignment(getIntent().getStringExtra("dueDate"),
+                        myCategories[pos], -1, new Course(User.currentUser.getCourses()[coursePos]));
                 new CreateAssignment(getApplicationContext()).execute(assignmentToCreate);
                 //show confirmation toast -- find out how to do link to undo
                 Toast.makeText(getApplicationContext(), "Assignment added", Toast.LENGTH_SHORT).show();
