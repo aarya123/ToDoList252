@@ -103,7 +103,9 @@ public class CategoryChooserActivity extends Activity {
                        "\nCourse_id: "+User.currentUser.getCourses()[coursePos].getId());
 
                 Assignment assignmentToCreate = new Assignment(getIntent().getStringExtra("dueDate"),
-                        myCategories[pos], -1, new Course(User.currentUser.getCourses()[coursePos]));
+                                                myCategories[pos], -1,
+                                                new Course(User.currentUser.getCourses()[coursePos]));
+
                 new CreateAssignment(getApplicationContext()).execute(assignmentToCreate);
                 //show confirmation toast -- find out how to do link to undo
                 Toast.makeText(getApplicationContext(), "Assignment added", Toast.LENGTH_SHORT).show();

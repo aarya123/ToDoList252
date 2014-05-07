@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -37,10 +39,12 @@ public class CreateAssignment extends AsyncTask<Assignment, Void, Integer> {
 
             List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
             int courseid = -1;
+            int coursePos = -1;
             Course[] courses = User.currentUser.getCourses();
             for(int i = 0; i<courses.length; i++){
                 if(courses[i].getName().equals(assignment.getCourse().getName())){
                     courseid = courses[i].getId();
+                    coursePos = i;
                     break;
                 }
             }
@@ -61,8 +65,9 @@ public class CreateAssignment extends AsyncTask<Assignment, Void, Integer> {
             while ((line = rd.readLine()) != null) {
                 result.append(line);
             }
-
-            Log.d("Sean", "Result: "+result.toString());
+            Gson gson = new Gson();
+            Course newCourse = gson.fromJson(result.toString(), Course.class);
+            User.currentUser.getCourses()[coursePos] = newCourse;
 
         }
         catch( UnsupportedEncodingException e){
