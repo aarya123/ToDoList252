@@ -2,6 +2,7 @@ package com.purdue.Todo;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -10,6 +11,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,24 +36,23 @@ public class CreateAssignment extends AsyncTask<Assignment, Void, Integer> {
             HttpPost post = new HttpPost(url);
 
             List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-            //TODO: CHECK THIS WITH ANUBHAW
-            int courseid = 0;
+            int courseid = -1;
             Course[] courses = User.currentUser.getCourses();
             for(int i = 0; i<courses.length; i++){
-                /*if(courses[i] == assignment.getCourse()){
+                if(courses[i].getName().equals(assignment.getCourse().getName())){
                     courseid = courses[i].getId();
                     break;
-                }*/
+                }
             }
             urlParameters.add(new BasicNameValuePair("Course_id", ""+courseid));
             urlParameters.add(new BasicNameValuePair("due_date", assignment.getDueDate()));
             urlParameters.add(new BasicNameValuePair("categories", assignment.getCategory()));
 
             post.setEntity(new UrlEncodedFormEntity(urlParameters));
-
+            Log.d("Sean-url", EntityUtils.toString(post.getEntity()));
             HttpResponse response = client.execute(post);
             System.out.println("Response code: "+ response.getStatusLine().getStatusCode());
-
+            Log.d("Sean", "Response code: "+response.getStatusLine().getStatusCode());
             BufferedReader rd = new BufferedReader(
                     new InputStreamReader(response.getEntity().getContent()));
 
@@ -61,7 +62,7 @@ public class CreateAssignment extends AsyncTask<Assignment, Void, Integer> {
                 result.append(line);
             }
 
-            System.out.println(result.toString());
+            Log.d("Sean", "Result: "+result.toString());
 
         }
         catch( UnsupportedEncodingException e){

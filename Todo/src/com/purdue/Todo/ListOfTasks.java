@@ -19,7 +19,7 @@ public class ListOfTasks extends ListActivity {
         super.onCreate(savedInstanceState);
         ArrayList<Assignment> assignment_list = new ArrayList<Assignment>();
         //String[] values = {"a","b","c","d","e","f","g","h"};
-        Assignment ass1 = new Assignment("2014-05-21 00:12:31", "Lab", -1);
+       /* Assignment ass1 = new Assignment("2014-05-21 00:12:31", "Lab", -1);
         Assignment ass2 = new Assignment("2014-05-18 12:31:22", "Homework", -1);
         Assignment ass3 = new Assignment("2014-06-10 05:43:11", "Prelab", -1);
         Assignment ass4 = new Assignment("2014-06-02 08:42:11", "Test", -1);
@@ -29,7 +29,7 @@ public class ListOfTasks extends ListActivity {
         assignment_list.add(ass2);
         assignment_list.add(ass3);
         assignment_list.add(ass4);
-        assignment_list.add(ass5);
+        assignment_list.add(ass5);*/
 
         adapter = new TaskList_ArrayAdapter(this, assignment_list);
 

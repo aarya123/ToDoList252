@@ -6,16 +6,17 @@ package com.purdue.Todo;
 public class Assignment {
     private String DueDate;
     private String Category;
+    private Course InterCourse;
     private int id;
 
-    public Assignment(String dueDate, String category, int id) {
+    public Assignment(String dueDate, String category, int id, Course course) {
         DueDate = dueDate;
         Category = category;
         this.id = id;
+        InterCourse = course;
     }
 
     public String getDueDate() {
-
         return DueDate;
     }
 
@@ -38,6 +39,10 @@ public class Assignment {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Course getCourse() { return InterCourse; }
+
+    public void setCourse(Course course) { InterCourse = course; }
 
     public String toString() {
         String assignment_details = DueDate + "%" + Category;
