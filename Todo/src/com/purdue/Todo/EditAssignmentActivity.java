@@ -6,15 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EditAssignmentActivity extends Activity{
 
@@ -23,7 +20,7 @@ public class EditAssignmentActivity extends Activity{
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_event);
+        setContentView(R.layout.edit_assignment);
         assignment_details = getIntent().getStringExtra("Assignment Object Details").split("%");
         assignment_id = assignment_details[3];
         
