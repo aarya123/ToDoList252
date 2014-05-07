@@ -91,7 +91,7 @@ public class ListOfTasks extends ListActivity{
         //Toast.makeText(getApplicationContext(), a.getCourse().getName()+"%"+a.toString(), Toast.LENGTH_LONG).show();
         
         intent.putExtra("Assignment Object Details", a.getCourse().getName()+"%"+a.toString());
-        intent.putExtra("Course_id", a.getCourse().getId());
+        intent.putExtra("Course_id", a.searchCourse().getId());
         
         startActivity(intent);
     }

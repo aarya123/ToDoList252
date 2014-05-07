@@ -71,7 +71,7 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        
 	        
 	        //set textViews
-	        holder.course.setText(a.getCourse().getName());
+	        holder.course.setText(a.searchCourse().getName());
 	        holder.dueDate.setText(requiredDateFormat);
 	        holder.category.setText(a.getCategories());
 	        

@@ -14,7 +14,7 @@ public class Assignment {
         DueDate = dueDate;
         Categories = category;
         this.id = id;
-        course = course;
+        this.course = course;
     }
 
 	public String getDueDate() {
@@ -55,7 +55,7 @@ public class Assignment {
 		return assignment_details;
 	}
 
-	public Course getCourse() {
+	public Course searchCourse() {
 		if (course == null) {
 			for (Course c : User.getCurrentUser().getCourses()) {
 				for (Assignment a : c.getAssignments()) {
@@ -65,6 +65,10 @@ public class Assignment {
 				}
 			}
 		}
+		return course;
+	}
+	
+	public Course getCourse() {
 		return course;
 	}
 	
