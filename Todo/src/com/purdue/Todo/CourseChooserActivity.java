@@ -3,7 +3,6 @@ package com.purdue.Todo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -38,8 +37,8 @@ public class CourseChooserActivity extends Activity {
                 startActivity(intent);
             }
         });
-        for (int i = 0; i < User.getCurrentUser().getAllAssignments().size(); i++)
-            Log.d(("Assignment #" + i), User.getCurrentUser().getAllAssignments().get(i).getDueDate());
+/*        for (int i = 0; i < User.getCurrentUser().getAllAssignments().size(); i++)
+            Log.d(("Assignment #" + i), User.getCurrentUser().getAllAssignments().get(i).getDueDate());*/
     }
 
     @Override

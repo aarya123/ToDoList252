@@ -53,6 +53,7 @@ public class DueDateChooserActivity extends Activity {
         public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
             if(calendarView.getDate() != startDate){ //check that a new date was selected
                 String date = "";
+                month++;//Calendar View starts months at 0, sql uses 1
 
                 //update startDate
                 startDate = calendarView.getDate();

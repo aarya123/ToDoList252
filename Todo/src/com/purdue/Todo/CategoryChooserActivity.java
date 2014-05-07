@@ -41,40 +41,40 @@ public class CategoryChooserActivity extends Activity {
             int month = Integer.parseInt(dateParts[1]);
             StringBuilder dateString = new StringBuilder();
             switch (month) {
-                case 0:
+                case 1:
                     dateString.append("January");
                     break;
-                case 1:
+                case 2:
                     dateString.append("February");
                     break;
-                case 2:
+                case 3:
                     dateString.append("March");
                     break;
-                case 3:
+                case 4:
                     dateString.append("April");
                     break;
-                case 4:
+                case 5:
                     dateString.append("May");
                     break;
-                case 5:
+                case 6:
                     dateString.append("June");
                     break;
-                case 6:
+                case 7:
                     dateString.append("July");
                     break;
-                case 7:
+                case 8:
                     dateString.append("August");
                     break;
-                case 8:
+                case 9:
                     dateString.append("September");
                     break;
-                case 9:
+                case 10:
                     dateString.append("October");
                     break;
-                case 10:
+                case 11:
                     dateString.append("November");
                     break;
-                case 11:
+                case 12:
                     dateString.append("December");
                     break;
                 default:
@@ -86,6 +86,10 @@ public class CategoryChooserActivity extends Activity {
         }
 
         if (coursePos >= 0) {
+            if(User.currentUser==null){Log.d("Sean","current user is null");}
+            Log.d("Sean", "coursePos:"+coursePos);
+            User.currentUser.getCourses();
+            Course test = User.currentUser.getCourses()[coursePos];
             selectedCourse.setText("Course: " + User.currentUser.getCourses()[coursePos]);
         } else {
             selectedCourse.setText("Course: ");

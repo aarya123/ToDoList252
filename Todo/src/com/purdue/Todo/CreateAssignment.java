@@ -42,6 +42,10 @@ public class CreateAssignment extends AsyncTask<Assignment, Void, Integer> {
             int coursePos = -1;
             Course[] courses = User.currentUser.getCourses();
             for(int i = 0; i<courses.length; i++){
+                if(courses[i]==null) { Log.d("Sean", "course is null"); }
+                if(courses[i].getName()==null){ Log.d("Sean", "name is null"); }
+                if(assignment==null){ Log.d("Sean", "assignment is null"); }
+                if(assignment.getCourse()==null){ Log.d("Sean", "assignment.course is null"); }
                 if(courses[i].getName().equals(assignment.getCourse().getName())){
                     courseid = courses[i].getId();
                     coursePos = i;
