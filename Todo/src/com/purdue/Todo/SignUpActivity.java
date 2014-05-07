@@ -12,15 +12,22 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gson.Gson;
 
 /**
@@ -74,17 +81,24 @@ public class SignUpActivity extends Activity {
 
     private class CreateUserTask extends AsyncTask<CourseAndColor, Void, String> {
         protected String doInBackground(CourseAndColor... courses) {
-            String request = SplashActivity.serverURL + "CreateUser.php?";
-            String toEncode = "";
-            for (int i = 0; i < courses.length; i++) {
-                toEncode += "course" + i + "=" + courses[i].course;
-                toEncode += "color" + i + "=" + courses[i].color;
-            }
-
-            HttpClient client = new DefaultHttpClient();
             try {
-                HttpGet get = new HttpGet(request + URLEncoder.encode(toEncode, "UTF-8"));
-                HttpResponse response = client.execute(get);
+                HttpClient client = new DefaultHttpClient();
+                String url = SplashActivity.serverURL + "CreateUser.php?";
+                HttpPost post = new HttpPost(url);
+
+                List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+
+
+                for (int i = 0; i < courses.length; i++) {
+                    urlParameters.add(new BasicNameValuePair("Course"+i, courses[i].course));
+                }
+
+                post.setEntity(new UrlEncodedFormEntity(urlParameters));
+                Log.i("Signup post entities", EntityUtils.toString(post.getEntity()));
+
+                HttpResponse response = client.execute(post);
+                Log.i("Signup response code", String.valueOf(response.getStatusLine().getStatusCode()));
+
                 if (response != null) {
                     InputStream content = response.getEntity().getContent();
                     BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
