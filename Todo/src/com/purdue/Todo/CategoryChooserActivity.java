@@ -81,7 +81,7 @@ public class CategoryChooserActivity extends Activity {
                     break;
             }
             dateString.append(" ");
-            dateString.append(dateParts[1]);
+            dateString.append(dateParts[2]);
             displayDate = dateString.toString();
         }
 
