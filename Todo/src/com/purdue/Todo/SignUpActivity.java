@@ -32,7 +32,6 @@ public class SignUpActivity extends Activity {
         setContentView(R.layout.signup);
 
         courses = new ArrayList();
-
     }
 
     private ArrayList<String> courses;

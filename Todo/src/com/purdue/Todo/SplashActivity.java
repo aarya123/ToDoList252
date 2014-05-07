@@ -45,6 +45,8 @@ public class SplashActivity extends Activity {
         int savedUserID = settings.getInt("currentUser", -1);
         String savedUserIDString = savedUserID > -1 ? String.valueOf(savedUserID) : "";
         ((EditText) findViewById(R.id.userID)).setText(savedUserIDString);
+        if (savedUserID != -1)
+            login(null);
 
         context = this;
     }

@@ -43,5 +43,4 @@ public class Assignment {
         String assignment_details = DueDate + "%" + Category;
         return assignment_details;
     }
-
 }
