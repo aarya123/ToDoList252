@@ -45,6 +45,8 @@ public class SplashActivity extends Activity {
         int savedUserID = settings.getInt("currentUser", -1);
         String savedUserIDString = savedUserID > -1 ? String.valueOf(savedUserID) : "";
         ((EditText) findViewById(R.id.userID)).setText(savedUserIDString);
+        if (savedUserID != -1)
+            login(null);
 
         context = this;
     }
@@ -55,12 +57,7 @@ public class SplashActivity extends Activity {
 
     private class GetUserTask extends AsyncTask<Integer, Void, String> {
         protected String doInBackground(Integer... params) {
-            int userID;
-            try {
-                userID = params[0];
-            } catch (NumberFormatException e) {
-                return "<Invalid number>";
-            }
+            int userID = params[0];
             HttpClient client = new DefaultHttpClient();
             String request = serverURL + "GetUser.php?User_id=" + userID;
             Log.i("TODO list", "Requesting: " + request);
@@ -90,7 +87,7 @@ public class SplashActivity extends Activity {
             //The result will be enclosed in <> if it's an error, otherwise it's a JSON string
             Log.i("TODO list", "Got user: " + result);
             if (result.charAt(0) == '<') { //Error
-                Toast.makeText(context, result.substring(1,result.length()-2), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, result.substring(1,result.length()-1), Toast.LENGTH_LONG).show();
             }
             else {
                 Gson gson = new Gson();
@@ -104,8 +101,14 @@ public class SplashActivity extends Activity {
 
     //This is called when the user presses the login button
     public void login(View view) {
-        int userID = Integer.parseInt(((EditText) findViewById(R.id.userID)).getText().toString());
-        new GetUserTask().execute(userID);
+        try {
+            String idString = ((EditText) findViewById(R.id.userID)).getText().toString();
+            int userID = Integer.parseInt(idString);
+            new GetUserTask().execute(userID);
+        } catch (NumberFormatException e) {
+            Toast.makeText(context, "Invalid number", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void signUp(View view) {

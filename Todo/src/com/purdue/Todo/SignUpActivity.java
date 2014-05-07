@@ -12,14 +12,22 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gson.Gson;
 
 /**
@@ -32,7 +40,6 @@ public class SignUpActivity extends Activity {
         setContentView(R.layout.signup);
 
         courses = new ArrayList();
-
     }
 
     private ArrayList<String> courses;
@@ -52,7 +59,7 @@ public class SignUpActivity extends Activity {
     public void signUp(View view) {
         CourseAndColor courses2[] = new CourseAndColor[courses.size()];
         for (int i = 0; i < courses.size(); i++)
-            courses2[i] = new CourseAndColor(courses.get(i), 0xffff00); //TODO: choose better default color
+            courses2[i] = new CourseAndColor(courses.get(i), 0xffffff);
         createUser(courses2);
     }
 
@@ -74,16 +81,24 @@ public class SignUpActivity extends Activity {
 
     private class CreateUserTask extends AsyncTask<CourseAndColor, Void, String> {
         protected String doInBackground(CourseAndColor... courses) {
-            String request = SplashActivity.serverURL + "CreateUser.php?";
-            for (int i = 0; i < courses.length; i++) {
-                request += "course" + i + "=" + courses[i].course;
-                request += "color" + i + "=" + courses[i].color;
-            }
-
-            HttpClient client = new DefaultHttpClient();
-            HttpGet get = new HttpGet(request);
             try {
-                HttpResponse response = client.execute(get);
+                HttpClient client = new DefaultHttpClient();
+                String url = SplashActivity.serverURL + "CreateUser.php?";
+                HttpPost post = new HttpPost(url);
+
+                List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+
+
+                for (int i = 0; i < courses.length; i++) {
+                    urlParameters.add(new BasicNameValuePair("Course"+i, courses[i].course));
+                }
+
+                post.setEntity(new UrlEncodedFormEntity(urlParameters));
+                Log.i("Signup post entities", EntityUtils.toString(post.getEntity()));
+
+                HttpResponse response = client.execute(post);
+                Log.i("Signup response code", String.valueOf(response.getStatusLine().getStatusCode()));
+
                 if (response != null) {
                     InputStream content = response.getEntity().getContent();
                     BufferedReader buffer = new BufferedReader(new InputStreamReader(content));

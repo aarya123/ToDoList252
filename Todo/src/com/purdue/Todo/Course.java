@@ -16,6 +16,13 @@ public class Course {
         this.Assignments = null;
     }
 
+    public Course( Course course ){
+        this.id = course.id;
+        this.Name = course.Name;
+        this.Color = course.Color;
+        this.Assignments = course.Assignments;
+    }
+
     public Course(int id, String name, String Color, Assignment[] assignments) {
         this.id = id;
         this.Name = name;

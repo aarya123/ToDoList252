@@ -10,11 +10,12 @@ public class Assignment {
 	private int id; 
 	private Course course;
 
-	public Assignment(String dueDate, String categories, int id) {
-		DueDate = dueDate;
-		Categories = categories;
-		this.id = id;
-	}
+    public Assignment(String dueDate, String category, int id, Course course) {
+        DueDate = dueDate;
+        Categories = category;
+        this.id = id;
+        course = course;
+    }
 
 	public String getDueDate() {
 
@@ -78,5 +79,6 @@ public class Assignment {
 		//no assignment found
 		return null;
 	}
+    public void setCourse(Course course) { this.course = course; }
 
 }

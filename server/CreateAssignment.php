@@ -1,6 +1,6 @@
 <?php
 include 'Course.php';
-$Course=Course::getCourse($_GET["Course_id"]);
-$Course->addAssignment($_GET["due_date"],$_GET["categories"]);
+$Course=Course::getCourse($_POST["Course_id"]);
+$Course->addAssignment($_POST["due_date"],$_POST["categories"]);
 print json_encode($Course);
 ?>

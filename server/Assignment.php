@@ -15,12 +15,13 @@ class Assignment{
 		}
 		else{
 			$this->id=$Assignment_id;
-			$stmt = $db->prepare("SELECT due_date,categories FROM Assignment where id=?");
+			$stmt = $db->prepare("SELECT due_date, categories, notes FROM Assignment where id=?");
 			if($stmt->execute(array($Assignment_id))) {
 				$data=$stmt->fetchAll();
 				foreach($data as $row){
 					$this->DueDate=$row['due_date'];
 					$this->Categories=$row['categories'];
+					$this->Notes=$row['notes'];
 				}
 			}
 		}
@@ -28,7 +29,7 @@ class Assignment{
 	function addNotes($Notes){
 		include 'db.php';
 		$stmt = $db->prepare("UPDATE Assignment SET notes=? WHERE id=?;");
-		if(!($stmt->execute(array($Notes,$this->$id)))) {
+		if(!($stmt->execute(array($Notes,$this->id)))) {
 			print "failed :(";
 		}
 	}
