@@ -29,7 +29,7 @@ class Assignment{
 	function addNotes($Notes){
 		include 'db.php';
 		$stmt = $db->prepare("UPDATE Assignment SET notes=? WHERE id=?;");
-		if(!($stmt->execute(array($Notes,$this->$id)))) {
+		if(!($stmt->execute(array($Notes,$this->id)))) {
 			print "failed :(";
 		}
 	}
