@@ -77,7 +77,9 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        
 	        
 	        //set apropriate warning colors
-	        if(days <= 1)
+	        if(days < 0)
+	        	holder.dueIn.setTextColor(Color.parseColor("#000000")); //White
+	        else if(days <= 1)
 	        	holder.dueIn.setTextColor(Color.parseColor("#E80000")); //Red
 	        else if(days <= 3)
 	        	holder.dueIn.setTextColor(Color.parseColor("#FF9900")); //Orange
@@ -85,14 +87,16 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        	holder.dueIn.setTextColor(Color.parseColor("#33CC00")); //Green
 	        
 	        //set the required due date text
-	        if(minutes == 1)
+	        /*if(minutes == 1)
 	        	holder.dueIn.setText("Due in: " + minutesBetweenDates + " min");
 	        else if(minutes < 60)
 	        	holder.dueIn.setText("Due in: " + minutesBetweenDates + " mins");
 	        else if(hours == 1)
-	        	holder.dueIn.setText("Due in: " + hoursBetweenDates + " hour");
+	        	holder.dueIn.setText("Due in: " + hoursBetweenDates + " hour");*/
+	        if(minutes<0)
+	        	holder.dueIn.setText("Overdue!");
 	        else if(hours < 24)
-	        	holder.dueIn.setText("Due in: " + hoursBetweenDates + " hours");
+	        	holder.dueIn.setText("Due Today");
 	        else if(days == 1)
 	        	holder.dueIn.setText("Due in: " + daysBetweenDates + " day");
 	        else
