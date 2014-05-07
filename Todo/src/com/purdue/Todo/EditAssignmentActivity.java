@@ -6,23 +6,38 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class EditAssignmentActivity extends Activity{
 
 	public String[] assignment_details;
+	public String assignment_id;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_event);
         assignment_details = getIntent().getStringExtra("Assignment Object Details").split("%");
+        assignment_id = assignment_details[3];
+        
         
         TextView title = (TextView) findViewById(R.id.assignment_title);
         TextView dueDate = (TextView) findViewById(R.id.due_date);
-
+        final EditText assignment_notes = (EditText)findViewById(R.id.notes);
+        
+        //if assignment has notes, display them
+        if(!assignment_details[4].equals("null")){
+        	assignment_notes.setText(assignment_details[4], TextView.BufferType.EDITABLE);
+        }
+        
+        Button doneButton = (Button) findViewById(R.id.done_editing);
         
         //store the date in the required format
         
@@ -50,7 +65,19 @@ public class EditAssignmentActivity extends Activity{
         
         //Toast.makeText(getApplicationContext(), "Due    "+requiredDateFormat, Toast.LENGTH_LONG).show();
         
-        
+        doneButton.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String notes = assignment_notes.getText().toString();
+				//Toast.makeText(getApplicationContext(), "Notes: "+notes, Toast.LENGTH_LONG).show();
+				Assignment modifiedAssignment = Assignment.getAssignmentByID(Integer.parseInt(assignment_id));
+				modifiedAssignment.setNotes(notes);
+				new EditAssignmentTask(EditAssignmentActivity.this).execute(assignment_id,notes);
+			}
+		});
+        	
+        	
         
     }
 

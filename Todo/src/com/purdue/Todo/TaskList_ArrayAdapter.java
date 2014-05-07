@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -43,9 +44,7 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        }
 	        
 	        Assignment a = getItem(position);
-	        //holder.course.setText(a.getCourse().getName());
-	        holder.dueDate.setText(a.getDueDate());
-	        holder.category.setText(a.getCategory());
+	        
 	        
 	        //get the required number of days/hours/minutes between the due date and the current date
 	        
@@ -64,6 +63,17 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        String daysBetweenDates = Integer.toString(days);
 	        String hoursBetweenDates = Integer.toString(hours);
 	        String minutesBetweenDates = Integer.toString(minutes);
+	        
+	        //set date in proper format
+	        String requiredDateFormat;
+	        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+	        requiredDateFormat = sdf2.format(dueDate);
+	        
+	        
+	        //set textViews
+	        holder.course.setText(a.getCourse().getName());
+	        holder.dueDate.setText(requiredDateFormat);
+	        holder.category.setText(a.getCategories());
 	        
 	        
 	        //set apropriate warning colors

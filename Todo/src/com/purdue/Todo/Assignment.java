@@ -4,44 +4,79 @@ package com.purdue.Todo;
  * Created by Sean on 4/29/14.
  */
 public class Assignment {
-    private String DueDate;
-    private String Category;
-    private int id;
+	private String DueDate;
+	private String Categories;
+	private String Notes;
+	private int id; 
+	private Course course;
 
-    public Assignment(String dueDate, String category, int id) {
-        DueDate = dueDate;
-        Category = category;
-        this.id = id;
-    }
+	public Assignment(String dueDate, String categories, int id) {
+		DueDate = dueDate;
+		Categories = categories;
+		this.id = id;
+	}
 
-    public String getDueDate() {
+	public String getDueDate() {
 
-        return DueDate;
-    }
+		return DueDate;
+	}
 
-    public void setDueDate(String dueDate) {
-        DueDate = dueDate;
-    }
+	public void setDueDate(String dueDate) {
+		DueDate = dueDate;
+	}
 
-    public String getCategory() {
-        return Category;
-    }
+	public String getCategories() {
+		return Categories;
+	}
 
-    public void setCategory(String category) {
-        Category = category;
-    }
+	public void setCategories(String categories) {
+		Categories = categories;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getNotes(){
+		return Notes;
+	}
 
-    public String toString() {
-        String assignment_details = DueDate + "%" + Category;
-        return assignment_details;
-    }
+	public void setNotes(String Notes){
+		this.Notes = Notes;
+	}
+	public String toString() {
+		String assignment_details = DueDate + "%" + Categories + "%" + Integer.toString(id)
+				+ "%" + Notes;
+		return assignment_details;
+	}
+
+	public Course getCourse() {
+		if (course == null) {
+			for (Course c : User.getCurrentUser().getCourses()) {
+				for (Assignment a : c.getAssignments()) {
+					if (this.equals(a)) {
+						course = c;
+					}
+				}
+			}
+		}
+		return course;
+	}
+	
+	static public Assignment getAssignmentByID(int id){
+		for (Course c : User.getCurrentUser().getCourses()) {
+			for (Assignment a : c.getAssignments()) {
+				if (id==a.getId()) {
+					return a;
+				}
+			}
+		}
+		//no assignment found
+		return null;
+	}
 
 }

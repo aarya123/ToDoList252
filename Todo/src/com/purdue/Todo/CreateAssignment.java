@@ -45,7 +45,7 @@ public class CreateAssignment extends AsyncTask<Assignment, Void, Integer> {
             }
             urlParameters.add(new BasicNameValuePair("Course_id", ""+courseid));
             urlParameters.add(new BasicNameValuePair("due_date", assignment.getDueDate()));
-            urlParameters.add(new BasicNameValuePair("categories", assignment.getCategory()));
+            urlParameters.add(new BasicNameValuePair("categories", assignment.getCategories()));
 
             post.setEntity(new UrlEncodedFormEntity(urlParameters));
 
