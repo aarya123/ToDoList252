@@ -19,6 +19,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import com.google.gson.Gson;
 
@@ -51,7 +52,7 @@ public class SignUpActivity extends Activity {
     public void signUp(View view) {
         CourseAndColor courses2[] = new CourseAndColor[courses.size()];
         for (int i = 0; i < courses.size(); i++)
-            courses2[i] = new CourseAndColor(courses.get(i), 0xffff00); //TODO: choose better default color
+            courses2[i] = new CourseAndColor(courses.get(i), 0xffffff);
         createUser(courses2);
     }
 
@@ -74,14 +75,15 @@ public class SignUpActivity extends Activity {
     private class CreateUserTask extends AsyncTask<CourseAndColor, Void, String> {
         protected String doInBackground(CourseAndColor... courses) {
             String request = SplashActivity.serverURL + "CreateUser.php?";
+            String toEncode = "";
             for (int i = 0; i < courses.length; i++) {
-                request += "course" + i + "=" + courses[i].course;
-                request += "color" + i + "=" + courses[i].color;
+                toEncode += "course" + i + "=" + courses[i].course;
+                toEncode += "color" + i + "=" + courses[i].color;
             }
 
             HttpClient client = new DefaultHttpClient();
-            HttpGet get = new HttpGet(request);
             try {
+                HttpGet get = new HttpGet(request + URLEncoder.encode(toEncode, "UTF-8"));
                 HttpResponse response = client.execute(get);
                 if (response != null) {
                     InputStream content = response.getEntity().getContent();
