@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 /**
  * Created by Nathan on 4/29/2014.
  */

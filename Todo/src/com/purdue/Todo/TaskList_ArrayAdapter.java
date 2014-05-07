@@ -78,7 +78,7 @@ public class TaskList_ArrayAdapter extends ArrayAdapter<Assignment>{
 	        
 	        //set apropriate warning colors
 	        if(days < 0)
-	        	holder.dueIn.setTextColor(Color.parseColor("#000000")); //White
+	        	holder.dueIn.setTextColor(Color.parseColor("#FFFFFF")); //White
 	        else if(days <= 1)
 	        	holder.dueIn.setTextColor(Color.parseColor("#E80000")); //Red
 	        else if(days <= 3)
